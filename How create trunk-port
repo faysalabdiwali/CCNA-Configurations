@@ -1,0 +1,31 @@
+Tallaabooyinka Si Loogu Sameeyo Trunk Port
+1. Gali enable mode:
+Switch> enable
+2. Gali configuration mode:
+Switch# configure terminal
+3. Xulo interface-ka aad rabto inaad Trunk ka dhigto. Tusaale, waxaan dooranayaa GigabitEthernet0/1:
+Switch(config)# interface gigabitEthernet 0/1
+4. Set interface-ka Trunk mode:
+Switch(config-if)# switchport mode trunk
+4. Set interface-ka Trunk mode:
+Switch(config-if)# switchport mode trunk
+5. Specify allowed VLANs on the trunk:
+Marka aad trunk sameysid, waxaad tilmaami kartaa VLANs ay ku socon karaan. Haddii aad rabto in VLANs 10, 20, iyo 30 ay marayaan trunk-ka, waxaad isticmaali kartaa:
+Switch(config-if)# switchport trunk allowed vlan 10,20,30
+6. Set the encapsulation protocol:
+Switch(config-if)# switchport trunk encapsulation dot1q
+(qaarkood switches waxa laga yaabaa in aysan u baahnayn tallaabadan haddii ay tahay dot1q oo default ah).
+7. Exit configuration mode:
+Switch(config-if)# exit
+8. Save configuration:
+Switch# write memory
+Tusaale Full ah:
+Switch> enable
+Switch# configure terminal
+Switch(config)# interface gigabitEthernet 0/1
+Switch(config-if)# switchport mode trunk
+Switch(config-if)# switchport trunk allowed vlan 10,20,30
+Switch(config-if)# switchport trunk encapsulation dot1q
+Switch(config-if)# exit
+Switch# write memory
+
