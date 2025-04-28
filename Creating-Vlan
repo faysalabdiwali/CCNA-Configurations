@@ -1,0 +1,26 @@
+1. sida loo galo Cisco-Switch
+waxaad u baahan tahay
+1. Console cable (Rj45 to serial/Usb cable)
+2. Terminal program (tusaale Putty,Tera Term, SecureCRT)
+Talaabooyinka:
+1. ku xiro Console cable ka computer kaga console port ka switch ka
+2. Fur program sida putty oo dooro serial ama com port sax ah hadii aad usb isticmaaleydo
+3. speed settings
+1. speed baud rate 9600
+2. date bits 8
+3. stop bits 1
+4. prity none
+5. follow control none
+4. marka aad xirto waxaad arki doontaa console ka switch ka
+marka aad gudaha gasho
+switch>
+waxaad joogtaa user mode
+geli enable
+waxa aad tagi doontaa privilege mode
+
+sida loo sameeyo Vlan swich cisco ah
+marka aad joogtid privilage mode waxa aad ku aqoonsani kartaa calaamada (#)
+ka dib sida tan u sameey
+switch(config)# vlan 10
+switch(config-vlan)# name HRM
+switch(config-vlan)# exit
