@@ -1,0 +1,27 @@
+Sida Interface loogu Assign-gareeyo VLAN Cisco Switch
+Marka aad VLAN abuurto, waxaad u baahan tahay inaad ports/Interfaces (sida GigabitEthernet 0/1) u xirto VLAN-kaas.
+Tallaabooyinka:
+1.Gali enable mode:
+Switch> enable
+2.Gali configuration mode:
+Switch# configure terminal
+3.dooro interface-ka aad rabto inaad VLAN ku darted : Tusaale ahaan, interface GigabitEthernet0/1:
+Switch(config)# interface gigabitEthernet 0/1
+4.Set interface-ka in uu noqdo access port:
+Switch(config-if)# switchport mode access
+5.Assign VLAN gaar ah (tusaale VLAN 10):
+Switch(config-if)# switchport access vlan 10
+6.Exit configuration-ka:
+Switch(config-if)# exit
+7.Save configuration-ka:
+Switch# write memory
+Ama
+Switch# copy running-config startup-config
+Tusaale dhameestiran.......
+Switch> enable
+Switch# configure terminal
+Switch(config)# interface gigabitEthernet 0/1
+Switch(config-if)# switchport mode access
+Switch(config-if)# switchport access vlan 10
+Switch(config-if)# exit
+Switch# write memory
