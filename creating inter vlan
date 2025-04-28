@@ -1,0 +1,52 @@
+"Inter-VLAN", waxa aad ka hadlayso waa Inter-VLAN Routing, taasoo la micno ah in VLAN-yo kala duwan ay wada xiriiri karaan.
+
+Marka la sameeyo VLAN-yada, xitaa haddii ay ku jiraan hal switch, default ahaan ma wada xiriiraan — waa security feature. Haddii aad rabto in VLAN 10 (tusaale) iyo VLAN 20 ay is arkaan, waxaa loo baahan yahay:
+
+Router (Router-on-a-stick)
+ama
+
+Layer 3 Switch (Switch leh routing support)
+
+Sida loo sameeyo Inter-VLAN Routing (hab fudud):
+Habka 1: Router-on-a-Stick (Router isticmaala sub-interfaces)
+Samee VLANs (Switch-ka):
+
+
+Switch# configure terminal
+Switch(config)# vlan 10
+Switch(config-vlan)# name HR
+Switch(config-vlan)# exit
+Switch(config)# vlan 20
+Switch(config-vlan)# name Finance
+Switch(config-vlan)# exit
+Assign Ports to VLANs:
+
+
+Switch(config)# interface FastEthernet0/1
+Switch(config-if)# switchport mode access
+Switch(config-if)# switchport access vlan 10
+Switch(config-if)# exit
+
+Switch(config)# interface FastEthernet0/2
+Switch(config-if)# switchport mode access
+Switch(config-if)# switchport access vlan 20
+Switch(config-if)# exit
+Configure Trunk Port (u xiraya router-ka):
+
+
+Switch(config)# interface FastEthernet0/24
+Switch(config-if)# switchport mode trunk
+Switch(config-if)# exit
+Router-ka configure sub-interfaces:
+
+
+Router# configure terminal
+Router(config)# interface GigabitEthernet0/0.10
+Router(config-subif)# encapsulation dot1Q 10
+Router(config-subif)# ip address 192.168.10.1 255.255.255.0
+Router(config-subif)# exit
+
+Router(config)# interface GigabitEthernet0/0.20
+Router(config-subif)# encapsulation dot1Q 20
+Router(config-subif)# ip address 192.168.20.1 255.255.255.0
+Router(config-subif)# exit
