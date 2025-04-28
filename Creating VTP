@@ -1,0 +1,68 @@
+VTP (VLAN Trunking Protocol) waa protocol loo isticmaalo in lagu maareeyo oo lagu qaybiyo VLANs dhexda switches Cisco. VTP wuxuu ka caawiyaa in VLANs la abuuro oo si toos ah loogu qaybo switches kale ee ku jira network-ka.
+
+Marka aad VTP samaynayso, waxaa jira saddex nooc oo VTP ah:
+
+VTP Server: Kani waa nooca ugu muhiimsan. Waxaad abuuri kartaa iyo qaybin kartaa VLANs. VTP Server waxay qeybisaa VLANs ku jira network-ka.
+
+VTP Client: Noocan, switch-ka wuxuu qaataa VLANs ka yimaada VTP Server laakiin ma abuuri karo ama ma beddeli karo VLANs.
+
+VTP Transparent: Noocan, switch-ka wuxuu u dhaqmaa sidii mid aan VTP ku shaqeynin (ma qaybin karo ama ma qaadan karo VLANs), laakiin wuxuu abuuri karaa VLANs gudaha switch-ka.
+
+Sida Loo Sameeyo VTP
+1. Gali Enable Mode
+Marka hore, waxaad u baahan tahay inaad gasho privileged EXEC mode.
+
+Switch> enable
+2. Gali Configuration Mode
+Kadib, waxaad u baahan tahay inaad gasho global configuration mode.
+Switch# configure terminal
+3. Set VTP Domain
+VTP waxay u baahan tahay domain name. Dhamaan switches-ka ku jira domain-kaas ayaa wadaagaya VLAN.
+
+Switch(config)# vtp domain example-domain
+Sharaxaad:
+
+example-domain waa magaca domain-ka aad dooratay. Hubi in dhammaan switches ku shaqeeya VTP domain-kaas ay lahaadaan magaca domain isku mid ah.
+
+4. Set VTP Mode
+Switch-ka waxaad u baahan tahay inaad doorato nooca VTP (Server, Client, ama Transparent). Tusaale ahaan, haddii aad rabto inaad sameyso switch-kaaga inuu noqdo VTP Server, waxaad isticmaali kartaa:
+Switch(config)# vtp mode server
+Haddii aad rabto inaad sameyso VTP Client, isticmaal:
+
+Switch(config)# vtp mode client
+Haddii aad rabto VTP Transparent, isticmaal:
+
+Switch(config)# vtp mode transparent
+Server Mode: Waxaad abuuri kartaa iyo qaybin kartaa VLANs.
+
+Client Mode: Waxaad qaadan kartaa VLANs ka imaanaya VTP Server, laakiin ma abuuri kartid.
+
+Transparent Mode: Switch-ku wuxuu abuuri karaa VLANs laakiin ma qaybin karo.
+
+5. Set VTP Version
+Waxaa jira laba nooc oo VTP ah: VTP version 1 iyo VTP version 2. Cisco waxay ku talineysaa in la isticmaalo VTP version 2, sababtoo ah waxay bixisaa taageero wanaagsan iyo amniga.
+
+Switch(config)# vtp version 2
+6. Set VTP Password (Optional)
+Si loo ilaaliyo amniga, waxaad ku dari kartaa VTP password. Tani waxay xaqiijinaysaa in VTP domain-ka kaliya uu aqbalo password sax ah.
+
+Switch(config)# vtp password MyPassword
+7. Check VTP Configuration
+Marka aad dhammeystirto dhammaan tallaabooyinka, waxaad hubin kartaa xaaladda VTP iyo isku xirka domain-ka adigoo isticmaalaya amarka:
+
+Switch# show vtp status
+8. Save Configuration
+Marka aad dhammeystirto, ha iloobin inaad keydiso configuration si isbeddeladaada aysan u lumin markii switch-ka dib loo bilaabo.
+
+Switch# write memory
+Ama:
+Switch# copy running-config startup-config
+Tusaale Full Script ah:
+Switch> enable
+Switch# configure terminal
+Switch(config)# vtp domain example-domain
+Switch(config)# vtp mode server
+Switch(config)# vtp version 2
+Switch(config)# vtp password MyPassword
+Switch(config)# exit
+Switch# write memory
