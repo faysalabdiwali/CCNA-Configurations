@@ -1,0 +1,29 @@
+Si aad u sameyso SSH Remote Login (Secure Shell) ee Cisco Switch, waxaad u baahan tahay inaad dejiso SSH server iyo user credentials. Tallaabooyinkaan waxay kaa caawin doonaan inaad sameysid SSH access si aad uga gasho switch-kaaga si amaan ah adigoo isticmaalaya SSH (tusaale ahaan PuTTY).
+1. Gali Enable Mode
+Marka hore, waxaad u baahan tahay inaad gasho privileged EXEC mode (enable mode).
+Switch> enable
+2. Gali Configuration Mode
+Kadib, waxaad u baahan tahay inaad gasho global configuration mode.
+Switch# configure terminal
+3. Set Hostname iyo Domain Name
+SSH wuxuu u baahan yahay hostname iyo domain name si loo isticmaalo RSA keys. Waxaa lagama maarmaan ah inaad dhigto hostname iyo domain name si loo habeeyo.
+Switch(config)# hostname MySwitch
+Switch(config)# ip domain-name example.com
+4. Generate RSA Key Pair
+SSH waxay isticmaashaa RSA keys. Waxaa lagama maarmaan ah inaad abuurto key pair (public iyo private keys) si loo isticmaalo SSH.
+Switch(config)# crypto key generate rsa general-keys modulus 2048
+Tani waxay abuuri doontaa RSA keys ee loo isticmaali doono SSH.
+2048 waxay tilmaamaysaa cabbirka keyga, kaas oo ah mid ammaan badan.
+Ka dib markaad orodo amarkan, waxaa laga yaabaa inaad aragto fariin ka codsaneysa inaad dhigayso key size, dooro 2048 si aad u hesho amniga ugu fiican.
+5. Set up a Username and Password
+Hadda waxaad u baahan tahay inaad sameysid username iyo password si aad u gasho switch-ka via SSH. Tusaale ahaan:
+Switch(config)# username admin privilege 15 secret MyPassword
+username admin — magaca isticmaale ee aad rabto inaad abuurto.
+privilege 15 — waxay siinaysaa full administrative privileges.
+secret MyPassword — password-ka aad dooratay.
+6. Enable SSH on the VTY Lines
+Ka dib markaad samayso user iyo key pair, waxaad u baahan tahay inaad SSH u ogolaato VTY lines si aad ugu gasho switch-ka SSH.
+Switch(config)# line vty 0 15
+Switch(config-line)# transport input ssh
+Switch(config-line)# login local
+Switch(config-line)# exit
