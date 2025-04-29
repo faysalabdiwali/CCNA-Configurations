@@ -1,0 +1,45 @@
+Port Security waa feature ku jira Cisco switches oo lagu xaddido ama lagu ilaaliyo MAC address-yada ku xirma port-ka switch-ka, si looga hortago qalab cusub (una fasaxo kaliya qalab gaar ah). Waxaa si gaar ah waxtar u leh marka la rabo in la xakameeyo cidda isticmaali karta network-ka (gaar ahaan access layer-ka).
+
+✅ Tallaabooyinka Sameynta Port Security
+1. U badal interface-ka mode access
+
+Switch(config)# interface fa0/1
+Switch(config-if)# switchport mode access
+2. Kicinta Port Security
+
+Switch(config-if)# switchport port-security
+3. Xadid MAC address-yada la oggol yahay
+
+Switch(config-if)# switchport port-security maximum 1
+4. MAC address ku keydi automatic
+
+Switch(config-if)# switchport port-security mac-address sticky
+5. Qeex ficilka marka qalad dhaco
+
+Switch(config-if)# switchport port-security violation shutdown
+Ficilada suurtagalka ah:
+
+shutdown – port-ka wuu xirayaa (default)
+
+restrict – MAC cusub wuu diidayaa, log wuu galinayaa
+
+protect – MAC cusub wuu iska diidayaa, log ma gelinayo
+
+🧪 Tusaale Dhameystiran
+
+Switch(config)# interface fa0/1
+Switch(config-if)# switchport mode access
+Switch(config-if)# switchport port-security
+Switch(config-if)# switchport port-security maximum 1
+Switch(config-if)# switchport port-security mac-address sticky
+Switch(config-if)# switchport port-security violation shutdown
+🔍 Hubinta Port Security Status
+
+Switch# show port-security interface fa0/1
+Waxaad ka heli doontaa xogta sida:
+
+MAC Address authorized
+
+Violation count (qiyaasaha jebinta)
+
+Status: Secure-up / Secure-shutdown
