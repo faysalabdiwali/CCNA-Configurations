@@ -1,0 +1,52 @@
+CDP (Cisco Discovery Protocol) iyo LLDP (Link Layer Discovery Protocol) waa laba protocol oo loo adeegsado device discovery – waxay kuu oggolaanayaan inaad ogaato qalabka ku xiran port-yada switch-kaaga (tusaale, router, switch, IP phone iwm).
+
+✅ 1. CDP (Cisco Proprietary)
+🔧 Enable/Disable CDP
+CDP waa enabled by default.
+
+➕ Enable CDP (Global):
+
+Switch(config)# cdp run
+➖ Disable CDP (Global):
+
+Switch(config)# no cdp run
+Disable CDP per-interface:
+
+Switch(config)# interface fa0/1
+Switch(config-if)# no cdp enable
+Enable CDP per-interface:
+
+Switch(config)# interface fa0/1
+Switch(config-if)# cdp enable
+🔍 View CDP Neighbors:
+
+Switch# show cdp neighbors
+Switch# show cdp neighbors detail
+✅ 2. LLDP (Standard Protocol - IEEE 802.1AB)
+LLDP waxaa taageera Cisco, HP, Juniper, iwm. Waxaa laga yaabaa in aysan default uusan u shaqeynaynin Cisco devices (you must enable it).
+
+🔧 Enable/Disable LLDP
+➕ Enable LLDP (Global):
+
+Switch(config)# lldp run
+➖ Disable LLDP (Global):
+
+Switch(config)# no lldp run
+Enable/Disable LLDP per-interface:
+
+Switch(config)# interface fa0/1
+Switch(config-if)# lldp transmit
+Switch(config-if)# lldp receive
+🔍 View LLDP Neighbors:
+
+Switch# show lldp neighbors
+Switch# show lldp neighbors detail
+🧪 Tusaale Config Dhameystiran (CDP + LLDP)
+
+Switch(config)# cdp run
+Switch(config)# lldp run
+
+Switch(config)# interface range fa0/1 - 2
+Switch(config-if-range)# cdp enable
+Switch(config-if-range)# lldp transmit
+Switch(config-if-range)# lldp receive
