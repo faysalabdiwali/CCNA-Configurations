@@ -1,0 +1,59 @@
+Spanning Tree Protocol (STP) waa protocol looga hortago loop-yada ka dhaca network-yada Layer 2 (Switching), gaar ahaan marka la isticmaalo EtherChannel ama redundant links. Cisco switches waxay si default ah u taageeraan STP.
+
+✅ STP Versions ee Cisco:
+
+Version	Description
+STP (802.1D)	Standard STP
+RSTP (802.1w)	Rapid STP – faster recovery
+PVST+	Cisco proprietary – per VLAN
+Rapid-PVST+	Rapid + per VLAN – best option
+🔧 Tallaabooyinka Config-ga STP
+✅ 1. Hubi STP version-ka la isticmaalayo:
+
+Switch# show spanning-tree
+✅ 2. Set Root Bridge (Priority yar)
+Switch-ka aad rabto inuu noqdo Root Bridge, waxaad hoos u dhigtaa priority:
+
+
+Switch(config)# spanning-tree vlan 1 priority 4096
+Default priority waa 32768. Midka priority ugu yar ayaa noqonaya Root Bridge.
+
+✅ 3. Set Secondary Root Bridge (optional)
+Switch kale waxaad siin kartaa priority ka weyn Root Bridge laakiin ka yar default:
+
+
+Switch(config)# spanning-tree vlan 1 priority 8192
+✅ 4. Kordhi STP Speed – RSTP
+Haddii aad rabto STP u dhaqma si degdeg ah:
+
+
+Switch(config)# spanning-tree mode rapid-pvst
+✅ 5. Set Port Roles Manually (optional)
+Waxaa kale oo aad dejin kartaa port roles sida PortFast, Edge, BPDUguard:
+
+
+Switch(config)# interface fa0/1
+Switch(config-if)# spanning-tree portfast
+Switch(config-if)# spanning-tree bpduguard enable
+PortFast – si degdeg ah ugu shaqee sida access port
+
+BPDU Guard – haddii BPDU yimaado, xir port-ka (badbaado)
+
+🔍 Command-yo Muhiim ah oo STP ah
+
+Switch# show spanning-tree vlan 1
+Switch# show spanning-tree root
+Switch# show spanning-tree summary
+🧪 Tusaale Fudud oo Laba Switch ah
+Switch1 (Root Bridge):
+
+
+Switch1(config)# spanning-tree vlan 1 priority 4096
+Switch2 (Secondary):
+
+
+Switch2(config)# spanning-tree vlan 1 priority 8192
+Labada Switch:
+
+
+Switch(config)# spanning-tree mode rapid-pvst
