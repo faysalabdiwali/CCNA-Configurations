@@ -1,0 +1,61 @@
+EtherChannel waa farsamo Cisco ah oo lagu mideeyo dhowr interface (ports) si ay u noqdaan hal waddo (logical link), taasoo kordhisa xawaaraha iyo isku halaynta (redundancy). Waxaa laga sameeyaa inta badan Cisco switches si loo kordhiyo bandwidth-ka u dhexeeya laba ama ka badan switch ama server.
+
+✳️ Tallaabooyinka Sameynta EtherChannel (Static ama Dynamic)
+Waxaa jira 3 nooc oo EtherChannel ah:
+
+Static (manual) – laguma tiirsana protocol
+
+PAgP (Port Aggregation Protocol) – Cisco proprietary
+
+LACP (Link Aggregation Control Protocol) – IEEE standard (802.3ad)
+
+✅ 1. Tusaale EtherChannel Static (Manual)
+
+Switch(config)# interface range fa0/1 - 2
+Switch(config-if-range)# channel-group 1 mode on
+Switch(config-if-range)# exit
+
+Switch(config)# interface Port-channel 1
+Switch(config-if)# switchport mode access
+Switch(config-if)# switchport access vlan 10
+✅ 2. Tusaale LACP EtherChannel (Recommended)
+
+Switch(config)# interface range fa0/1 - 2
+Switch(config-if-range)# channel-group 1 mode active
+Switch(config-if-range)# exit
+
+Switch(config)# interface Port-channel 1
+Switch(config-if)# switchport mode trunk
+Sharax:
+
+mode active = LACP
+
+mode passive = LACP (kaliya jawaabi kara)
+
+mode on = Static (manual)
+
+switchport mode trunk = haddii aad u adeegsanayso isku xirnaanta switches
+
+🧪 Tusaale Practical ah oo u dhaxeeya laba switch
+Switch1:
+
+Switch1(config)# interface range fa0/1 - 2
+Switch1(config-if-range)# channel-group 1 mode active
+Switch1(config-if-range)# switchport mode trunk
+Switch2:
+
+Switch2(config)# interface range fa0/1 - 2
+Switch2(config-if-range)# channel-group 1 mode passive
+Switch2(config-if-range)# switchport mode trunk
+🔍 Hubinta EtherChannel
+
+Switch# show etherchannel summary
+Waxaad ka arki doontaa wax sidan oo kale ah:
+
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+----------------------------
+1      Po1           LACP        Fa0/1(P)  Fa0/2(P)
+(P) = Port waa active
+
+(I) = Individual (ma shaqeynayo EtherChannel)
